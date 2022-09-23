@@ -1,4 +1,4 @@
-let React = require('require')
+let React = require('react')
 let Default = require('./layouts/default')
 
 function Show ({bread}) {
