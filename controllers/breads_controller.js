@@ -1,6 +1,7 @@
 let express = require("express");
 let breads = express.Router();
-let Bread = require("../models/bread.js");
+let Bread = require("../models/bread.js"); 
+const Baker = require('../models/baker.js')
 
 // INDEX
 breads.get("/", (req, res) => {
@@ -13,9 +14,15 @@ breads.get("/", (req, res) => {
 });
 
 // NEW
-breads.get("/new", (req, res) => {
-  res.render("new");
-});
+breads.get('/new', (req, res) => {
+    Baker.find()
+        .then(foundBakers => {
+            res.render('new', {
+                bakers: foundBakers
+            })
+      })
+})
+
 
 // CREATE
 breads.post("/", (req, res) => {
